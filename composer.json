@@ -1,5 +1,5 @@
 {
-    "name": "ingenio/filesystem",
+    "name": "filesystem/filesystem",
     "description": "Gestior de ficheros en PHP y JS by Toni Domenech & Marc Sanchez",
     "minimum-stability": "dev",
     "prefer-stable": true,
