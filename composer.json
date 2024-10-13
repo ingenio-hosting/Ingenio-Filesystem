@@ -1,0 +1,9 @@
+{
+    "name": "ingenio/filesystem",
+    "description": "Gestior de ficheros en PHP y JS by Toni Domenech & Marc Sanchez",
+    "autoload": {
+        "psr-4": {
+            "\\php\\Filesystem\\Filesystem\\": "src/"
+        }
+    }
+}
