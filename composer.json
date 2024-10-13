@@ -1,6 +1,11 @@
 {
     "name": "ingenio/filesystem",
     "description": "Gestior de ficheros en PHP y JS by Toni Domenech & Marc Sanchez",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "ingenio/filesystem":"dev-master"
+    },
     "autoload": {
         "psr-4": {
             "\\php\\Filesystem\\Filesystem\\": "src/"
