@@ -1,6 +1,17 @@
 {
     "name": "ingeniohosting/gestfilesystem",
     "description": "Gestior de ficheros en PHP y JS by Toni Domenech & Marc Sanchez",
+    "authors": [
+        {
+            "name": "Toni Domenech",
+            "email": "toni@ngenio.net"
+        },
+        {
+            "name": "Marcos Sanchez",
+            "email": ""
+        }
+
+    ],
     "license": "MIT",
     "minimum-stability": "dev",
     "prefer-stable": true,
