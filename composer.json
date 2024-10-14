@@ -5,6 +5,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
+        "php": ">=7.4",
         "ingenio/filesystem":"^1.0"
     },
     "autoload": {
