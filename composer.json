@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "\\php\\Filesystem\\Filesystem\\": "src/"
+            "\\Php\\Filesystem\\Filesystem\\": "src/php/"
         }
     }
 }
