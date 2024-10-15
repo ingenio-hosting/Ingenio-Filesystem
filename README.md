@@ -5,6 +5,9 @@
 
 #### DOCUMENTACIÓN
 ##### 1-INSTALCIÓN
+```sh
+composer require ingenio/filesystem:dev-principal
+```
 ##### 2-CONFIGURACIÓN
 ###### Para poder utilizar la clase:
 
