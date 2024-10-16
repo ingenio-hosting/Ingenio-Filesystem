@@ -2,13 +2,64 @@
 namespace Php\Filesystem\Filesystem;
 define('RUTA_AB',$_SERVER['DOCUMENT_ROOT'].'/'.'uploads/');
 define('RUTA_WEB','https://localhost/uploads/');
-class Installer {
-    public static function postInstall() {
-        // Copia los archivos CSS y JS al directorio público del proyecto
+class Installer
+{
+    /**
+     * Método que se ejecuta después de la instalación
+     */
+    public static function postInstall()
+    {
+        self::publishAssets();
     }
 
-    public static function postUpdate() {
-        // Realiza lo mismo en caso de actualización
+    /**
+     * Método que se ejecuta después de la actualización
+     */
+    public static function postUpdate()
+    {
+        self::publishAssets();
+    }
+
+    /**
+     * Publica los assets en el directorio 'public' del proyecto
+     */
+    private static function publishAssets()
+    {
+        // Definir las rutas de los archivos que queremos copiar
+        $assetSource = __DIR__ . '/assets';
+        $publicPath = getcwd() . '/public/vendor/ingenio/filesystem';
+
+        // Verificar si la carpeta de destino existe, si no, crearla
+        if (!is_dir($publicPath)) {
+            mkdir($publicPath, 0755, true);
+        }
+
+        // Copiar recursivamente los archivos desde assets/ a public/vendor/mi-libreria/
+        self::recurseCopy($assetSource, $publicPath);
+    }
+
+    /**
+     * Función auxiliar para copiar directorios de manera recursiva
+     *
+     * @param string $src  Ruta de origen
+     * @param string $dst  Ruta de destino
+     */
+    private static function recurseCopy($src, $dst)
+    {
+        $dir = opendir($src);
+        @mkdir($dst);
+
+        while (false !== ($file = readdir($dir))) {
+            if (($file != '.') && ($file != '..')) {
+                if (is_dir($src . '/' . $file)) {
+                    self::recurseCopy($src . '/' . $file, $dst . '/' . $file);
+                } else {
+                    copy($src . '/' . $file, $dst . '/' . $file);
+                }
+            }
+        }
+
+        closedir($dir);
     }
 }
 class Filesystem{
