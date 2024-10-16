@@ -12,6 +12,14 @@
         }
 
     ],
+    "scripts": {
+        "post-install-cmd": [
+            "Filesystem\\Installer::postInstall"
+        ],
+        "post-update-cmd": [
+            "Filesystem\\Installer::postUpdate"
+        ]
+    },
     "license": "MIT",
     "minimum-stability": "dev",
     "prefer-stable": true,

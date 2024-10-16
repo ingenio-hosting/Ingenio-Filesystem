@@ -2,6 +2,15 @@
 namespace Php\Filesystem\Filesystem;
 define('RUTA_AB',$_SERVER['DOCUMENT_ROOT'].'/'.'uploads/');
 define('RUTA_WEB','https://localhost/uploads/');
+class Installer {
+    public static function postInstall() {
+        // Copia los archivos CSS y JS al directorio público del proyecto
+    }
+
+    public static function postUpdate() {
+        // Realiza lo mismo en caso de actualización
+    }
+}
 class Filesystem{
     private $TreeDirectorios = "";
     public $RUTA_AB;
