@@ -1,0 +1,21 @@
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color:black;
+}
+#btn-1{
+    float: right;
+    margin-top: -6px;
+}
+.btn-fichero{
+    display:none;
+}
+#visor-foto{
+    width:150px;
+}
+.rename{
+    display:none;
+}
