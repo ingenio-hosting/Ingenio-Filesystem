@@ -23,8 +23,8 @@ composer require ingenio/filesystem:dev-principal
 Para utilizar los estilos y scripts de esta librería, incluye lo siguiente en tu archivo HTML:
 
 ```html
-<link rel="stylesheet" href="vendor/ingenio/filesystem/assets/css/mi-estilo.css">
-<script src="vendor/ingenio/filesystem/assets/js/mi-script.js"></script>
+<link rel="stylesheet" href="vendor/ingenio/filesystem/assets/css/filesystem.css">
+<script src="vendor/ingenio/filesystem/assets/js/filesystem.js"></script>
 
 ```
 
