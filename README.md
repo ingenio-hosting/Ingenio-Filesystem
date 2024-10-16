@@ -18,3 +18,17 @@ composer require ingenio/filesystem:dev-principal
 ?>
 ```
 
+## Incluir CSS y JS en tu proyecto
+
+Para utilizar los estilos y scripts de esta librería, incluye lo siguiente en tu archivo HTML:
+
+```html
+<link rel="stylesheet" href="vendor/ingenio/filesystem/assets/css/mi-estilo.css">
+<script src="vendor/ingenio/filesystem/assets/js/mi-script.js"></script>
+
+```
+
+
+### Conclusión:
+Si tu librería requiere estilos y scripts esenciales para funcionar correctamente, el método 1 (publicación de assets) es la mejor opción. Si los CSS/JS son opcionales o personalizables, el método 2 puede ser más flexible, permitiendo a los usuarios gestionar su inclusión como prefieran.
+
