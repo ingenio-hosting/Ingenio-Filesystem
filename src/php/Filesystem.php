@@ -1,7 +1,6 @@
 <?php
 namespace Php\Filesystem\Filesystem;
-define('RUTA_AB',$_SERVER['DOCUMENT_ROOT'].'/'.'uploads/');
-define('RUTA_WEB','https://localhost/uploads/');
+
 class Installer
 {
     /**
@@ -166,15 +165,20 @@ class Filesystem{
     }
     private function setFormSubirFichero(){
         $this->FormSubirFichero = '            
-            <form class="form-control" method="post" action="'.$this->action.'" enctype="multipart/form-data" >
+             <form class="form-control" method="post" action="'.$this->action.'" enctype="multipart/form-data" >
                 <h3>SUBIR UN FICHERO</h3>
                 <input class="form-control" type="text" name="nombre" placeholder="Nombre del propietario" />
                 <br>
                 <label>Subir un fichero:</label>
                 <input id="fichero" class="form-control" type="file" name="fichero" placeholder="Subir un fichero..."  />
                 <input type="hidden" name="action" value="SUBIR_FICHERO" />
+                <input type="hidden" name="url" id="url_fichero" /> 
                 <input class="btn btn-primary" type="submit" value="SUBIR" />
             </form>
+            <script>
+                let urlCompleta = window.location.href;
+                document.getElementById("url_fichero").value = urlCompleta;
+            </script>
         ';
     }
     public function getFormSubirFichero(){
