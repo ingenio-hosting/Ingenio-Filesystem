@@ -1,7 +1,9 @@
 <?php
 namespace Php\Filesystem\Filesystem;
-
+define('RUTA_AB',$_SERVER['DOCUMENT_ROOT'].'/'.'uploads/');
+define('RUTA_WEB','https://localhost/uploads/');
 class Filesystem{
+    private $TreeDirectorios = "";
     public $RUTA_AB;
     public $RUTA_WEB;
     public $ruta;   
@@ -24,6 +26,11 @@ class Filesystem{
     private $FormSeleccionarFichero = "";
     private $method = 'get';
     private $action = 'index.php';
+    public  $fotodef = "/assets/img/default.jpg";
+    private $MostrarFotos = "";
+    private $MostrarContenido = "";
+    private $item;
+
 
     public function __construct(){
         $this->ruta = RUTA_AB;
@@ -35,6 +42,8 @@ class Filesystem{
         $this->ObtenerEstructuraDirectorios(RUTA_AB,RUTA_WEB);
         $this->setFormSubirFichero();
         $this->setFormSeleccionarFichero();
+        $this->setMostrarFotos();       
+        $this->setTreeDirectorios();
     }
     public function setMetodAction($method,$action){
         $this->$method = $method;
@@ -48,7 +57,7 @@ class Filesystem{
                         <h3>SELECCIONAR UNA FICHERO</h3>
                     </div>
                     <div class="col-lg-4">
-                        <label>Nombre del fichero:</label>
+                        <label>Nombre:</label>
                         <input type="text" id="nomfile" class="form-control" name="nomfile" />
                     </div>
                     <div class="col-lg-4">
@@ -93,6 +102,7 @@ class Filesystem{
     }
     public function getFormSeleccionarFichero(){
         return $this->FormSeleccionarFichero;
+
     }
     private function setFormSubirFichero(){
         $this->FormSubirFichero = '            
@@ -112,12 +122,14 @@ class Filesystem{
     }
     public function setDirect($ruta){
         $this->direct = "";
+        $this->TreeDirectorios = "";
         $this->ObtenerEstructuraDirectorios($ruta,RUTA_WEB);
     }
     public function AbrirFicheros(array $datos){
         $fichero = fopen($datos['ruta'].$datos['nomfile'],$datos['modo']);
         //$datos = fgets($fichero);
         $item = fread($fichero,filesize($datos['ruta'].$datos['nomfile']));
+        $this->item = $item;
         return $item;   
         fclose($fichero);
                 
@@ -215,7 +227,10 @@ class Filesystem{
     private function GestorRutas(){       
         $this->GestorRutas .= $this->FormGestorRutas;
         $this->GestorRutas .='<span id="alert-ruta">'.$this->ruta.'</span>';
-        $this->GestorRutas .='<button id="btn-1" class="btn btn-primary" onclick="MostrasRem()"><i class="fa-solid fa-pen-to-square"></i></button>';
+        $this->GestorRutas .='
+        <button id="btn-1" class="btn btn-primary" onclick="MostrasRem()">
+        <i class="fa-solid fa-pen-to-square"></i>
+        </button>';
     }
     private function FormGestorRutas(){
         $this->FormGestorRutas .='
@@ -327,5 +342,45 @@ class Filesystem{
             return json_encode($res); 
         }
     }
-   
+    private function setTreeDirectorios(){
+        $this->TreeDirectorios = "";
+        $this->TreeDirectorios .= '<h4>GESTOR DE CARPETAS</h4>';
+        $this->TreeDirectorios .= '<div class="alert alert-success">';
+        $this->TreeDirectorios .= $this->GestorRutas; 
+        $this->TreeDirectorios .= '</div>';
+        $this->TreeDirectorios .= '<div id="direct" class="container">';
+        //$direct = $Filesys->setDirect(RUTA_AB);
+        $direct = $this->direct;
+        if(isset($direct) && !empty($direct)){ 
+            $this->TreeDirectorios .= $direct; 
+        }
+        $this->TreeDirectorios .='</div>';
+    }
+    public function getTreeDirectorios(){
+        $this->setTreeDirectorios();
+        return $this->TreeDirectorios;
+    }
+    private function setMostrarFotos(){     
+        $this->MostrarFotos .= '<h4>GESTOR DE CONTENIDOS</h4>';
+        $this->MostrarFotos .= '
+            <h5>Visor de imágenes</h5>
+            <div id="visor_imagen">
+                <img id="visor-foto" src="'.$this->fotodef.'" />
+            </div>
+        ';
+    }
+    public function getMostrarFotos(){
+        return $this->MostrarFotos;
+    }
+    public function setMostrarContenido($datos){ 
+        $this->MostrarContenido .= '<h5>Visor de ficheros</h5>';
+        $this->MostrarContenido .='<div id="visor_datos">';
+        if(isset($datos) and !empty($datos)){
+            $this->MostrarContenido .= $datos;
+        }
+        $this->MostrarContenido .= '</div>';
+    }
+    public function getMostrarContenido(){ 
+        return $this->MostrarContenido;
+    }
 }
